@@ -38,10 +38,20 @@ namespace Glass
 
             void TimerTick(object sender, EventArgs e)
             {
-                // something that redraws / repaints the main window
                 GlassImage.InvalidateVisual();
                 GlassImage.UpdateLayout();
             }
+        }
+
+        private void OnContentRendered(object sender, EventArgs e)
+        {
+            GlassImage.Width = SystemParameters.PrimaryScreenWidth / 5;
+            GlassImage.Opacity = 0.4;
+        }
+
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Maximized;
         }
     }
 }

@@ -13,13 +13,13 @@
         Cursor="None" 
         Visibility="Visible" 
         Background="{x:Null}" 
-        Icon="media/Classic.ico" 
+        Icon="media/Glass.ico" 
         VerticalAlignment="Top" 
         HorizontalAlignment="Left" 
         Foreground="{x:Null}" 
         WindowState="Maximized" 
         Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" 
         Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" 
-        Opacity="0" ResizeMode="NoResize">
+        Opacity="0" ResizeMode="NoResize" ContentRendered="OnContentRendered" Loaded="OnWindowLoaded">
     <Image x:Name="GlassImage" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" Source="media/Clear.png" Cursor="None" Stretch="Fill"/>
 </Window>
