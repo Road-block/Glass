@@ -18,7 +18,6 @@
         HorizontalAlignment="Left" 
         Foreground="{x:Null}" 
         WindowState="Maximized" 
-        IsHitTestVisible="False"
         Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" 
         Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" 
         ResizeMode="NoResize" 

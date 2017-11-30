@@ -39,7 +39,7 @@ namespace Glass
 
         private void OnContentRendered(object sender, EventArgs e)
         {
-            GlassImage.Width = Math.Max(300, SystemParameters.PrimaryScreenWidth / 8);
+            GlassImage.Width = Math.Max(330, SystemParameters.PrimaryScreenWidth / 8);
             GlassImage.Height = SystemParameters.PrimaryScreenHeight * ((float)5 / 6);
             GlassImage.Opacity = 0.8;
         }
