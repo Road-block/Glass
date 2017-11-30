@@ -11,14 +11,14 @@ namespace Glass
     /// </summary>
     public partial class MainWindow : Window
     {
-        public const int WsExTransparent = 0x00000020;
-        public const int GwlExstyle = (-20);
+        //public const int WsExTransparent = 0x00000020;
+        //public const int GwlExstyle = (-20);
 
-        [DllImport("user32.dll")]
-        public static extern int GetWindowLong(IntPtr hwnd, int index);
+        //[DllImport("user32.dll")]
+        //public static extern int GetWindowLong(IntPtr hwnd, int index);
 
-        [DllImport("user32.dll")]
-        public static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
+        //[DllImport("user32.dll")]
+        //public static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace Glass
 
         private void OnContentRendered(object sender, EventArgs e)
         {
-            GlassImage.Width = Math.Max(330, SystemParameters.PrimaryScreenWidth / 8);
+            GlassImage.Width = Math.Max(600, SystemParameters.PrimaryScreenWidth / 8);
             GlassImage.Height = SystemParameters.PrimaryScreenHeight * ((float)5 / 6);
             GlassImage.Opacity = 0.8;
         }
@@ -51,11 +51,11 @@ namespace Glass
 
         private void OnWindowSourceInitialized(object sender, EventArgs e)
         {
-            // Get this window's handle         
-            var hwnd = new WindowInteropHelper(this).Handle;
-            // Change the extended window style to include WS_EX_TRANSPARENT         
-            var extendedStyle = GetWindowLong(hwnd, GwlExstyle);
-            SetWindowLong(hwnd, GwlExstyle, extendedStyle | WsExTransparent);
+            //// Get this window's handle         
+            //var hwnd = new WindowInteropHelper(this).Handle;
+            //// Change the extended window style to include WS_EX_TRANSPARENT         
+            //var extendedStyle = GetWindowLong(hwnd, GwlExstyle);
+            //SetWindowLong(hwnd, GwlExstyle, extendedStyle | WsExTransparent);
         }
     }
 }
