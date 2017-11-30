@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Glass"
         mc:Ignorable="d"
-        Title="DiscordGlass-x64" 
+        Title="DiscordLookingGlass" 
         WindowStyle="None" 
         Topmost="True" 
         WindowStartupLocation="CenterScreen" 
@@ -18,8 +18,27 @@
         HorizontalAlignment="Left" 
         Foreground="{x:Null}" 
         WindowState="Maximized" 
+        IsHitTestVisible="False"
         Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" 
         Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" 
-        Opacity="0" ResizeMode="NoResize" ContentRendered="OnContentRendered" Loaded="OnWindowLoaded">
-    <Image x:Name="GlassImage" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" Source="media/Clear.png" Cursor="None" Stretch="Fill"/>
+        ResizeMode="NoResize" 
+        ContentRendered="OnContentRendered" 
+        Loaded="OnWindowLoaded" SourceInitialized="OnWindowSourceInitialized">
+    <Image x:Name="GlassImage" 
+           HorizontalAlignment="Left" Margin="0,0,0,0" 
+           VerticalAlignment="Top" 
+           Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" 
+           Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" 
+           Source="media/Black.png" 
+           Cursor="None" 
+           Stretch="Fill" 
+           IsHitTestVisible="False">
+        <Image.OpacityMask>
+            <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="DimGray" Offset="0.75"></GradientStop>
+                <GradientStop Color="Transparent" Offset="0.25"></GradientStop>
+            </LinearGradientBrush>
+        </Image.OpacityMask>
+    </Image>
 </Window>

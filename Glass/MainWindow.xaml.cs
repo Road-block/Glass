@@ -1,21 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Glass
@@ -25,10 +11,18 @@ namespace Glass
     /// </summary>
     public partial class MainWindow : Window
     {
+        public const int WsExTransparent = 0x00000020;
+        public const int GwlExstyle = (-20);
+
+        [DllImport("user32.dll")]
+        public static extern int GetWindowLong(IntPtr hwnd, int index);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hwnd, int index, int newStyle);
         public MainWindow()
         {
             InitializeComponent();
-            const float refresh = (float)1000 / 60;
+            const float refresh = (float)1000 / 60; // 60 FPS
             var timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(refresh)
@@ -45,13 +39,23 @@ namespace Glass
 
         private void OnContentRendered(object sender, EventArgs e)
         {
-            GlassImage.Width = SystemParameters.PrimaryScreenWidth / 5;
-            GlassImage.Opacity = 0.4;
+            GlassImage.Width = Math.Max(300, SystemParameters.PrimaryScreenWidth / 8);
+            GlassImage.Height = SystemParameters.PrimaryScreenHeight * ((float)5 / 6);
+            GlassImage.Opacity = 0.8;
         }
 
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Maximized;
+        }
+
+        private void OnWindowSourceInitialized(object sender, EventArgs e)
+        {
+            // Get this window's handle         
+            var hwnd = new WindowInteropHelper(this).Handle;
+            // Change the extended window style to include WS_EX_TRANSPARENT         
+            var extendedStyle = GetWindowLong(hwnd, GwlExstyle);
+            SetWindowLong(hwnd, GwlExstyle, extendedStyle | WsExTransparent);
         }
     }
 }
